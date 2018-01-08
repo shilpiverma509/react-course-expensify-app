@@ -29,7 +29,6 @@ const ExpenseListFilters =  (props)=>(
             <option value='date'>Date</option>
             <option value='amount'>Amount</option>
         </select>
-            console.log(e.target.value);
            {/*
            currently we are not able to change the input text
             changing the redux store, we need to use dispatch 
