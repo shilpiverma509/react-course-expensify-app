@@ -4,51 +4,26 @@
 
 //
 
+const person ={
+    name:"Ahilpi",  
+    age:29,
+    location:{
+        city:'Austin',
+        temp:92
+    }
+}
+const {name:firstName ="Anonymous",age,location:{city,temp:temperature}} = person;
+console.log(`${firstName} is ${age}.She lives in ${city} and its ${temperature}`);
 
+const book = {
+    title:'Ego is a holiday',
+    author:'Ryan Holiday',
+    publisher:{
+    }
+};
+const {publisher:{name:publisherName="self-publish"}} = book;
+console.log(`${publisherName}`);
 
-
-// console.log('destructuring');
-
-// const person = {
-//      name:"Shilpi",
-//      age:28,
-//     location:{
-//         city:"Austin",
-//         temp:34
-//     }
-// }
-// //ES6 destructuring with same variable names as property names
-// const {name,age} = person;
-// const {city,temp} = person.location;
-// if(city && temp){
-//     console.log(`${name} is ${age} and live in ${city} and its ${temp}`);
-// }
-
-
-// //to use your own variable names instead of same property names
-// const {city:Location,temp:weather} = person.location;
-// if(Location && weather){
-//     console.log(`${name} is ${age} and live in ${Location} and its ${weather}`);
-// }
-
-
-// //set up default values
-// if(city && temp){
-//         console.log(`${name} is ${age} and live in ${city} and its ${temp}`);
-//     }
-    
-// const{name:firstName='anonymous',age='anonymous'}=person;
-// console.log(`${firstName}is around ${age} years old`);
-
-// const book = {
-//     title:'Ego is a holiday',
-//     author:'Ryan Holiday',
-//     publisher:{
-//         name:'Penguin'
-//     }
-// };
-// const {name:publisherName = anonymous} = book.publisher;
-// console.log(`${publisherName}`);
 
 
 //
@@ -56,24 +31,21 @@
 //Array Destructuring
 
 //
+
+
+
 //matching u by position in array
-//const address = ['12100 Metric Blvd','Austin','Texas','78758'];
-//const [street,city,state,zip] = address;
-//in case you don't want to destructure the first item
-// const [, , state] = address;
+const address = ["12100 metric","Austin","texas","US"];
+const [street="12100 metric",,state="NYC",]=address;
+//taking up defaults value
+console.log(`You are in ${street}.you are in ${state}`);
 
-// console.log(`You are in ${state}`);
+ const item = [,'$2.00','$2.50','$2.75'];
 
-//set up defaults
-const address = [];
-
-const [, , state="Phily"] = address;
-
-console.log(`You are in ${state}`);
-
-const item = ['coffee(hot)','$2.00','$2.50','$2.75'];
-const [hotCoffee, ,cost]=item;
-console.log(`A medium  ${hotCoffee} costs ${cost}`);
+ const [itemName="hotCoffee",small,medium,large] = item
+console.log(`A medium ${itemName} costs ${medium}`)
+// const [hotCoffee, ,cost]=item;
+// console.log(`A medium  ${hotCoffee} costs ${cost}`);
 
 
 

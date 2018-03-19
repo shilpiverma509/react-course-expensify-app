@@ -5,13 +5,12 @@
 
 import React from 'react';
 import ExpenseList from './ExpenseList';
-import {connect} from 'react-redux';
-import ExpenseListFilters from './ExpenseListFilters';
+import ExpenseListfilters from './ExpenseListfilters'
 //conects your component to the redux store
 
 const ExpenseDashboardPage =(props)=>(
     <div>
-        <ExpenseListFilters />
+        <ExpenseListfilters />
         <ExpenseList />
     </div>
     );

@@ -4,17 +4,13 @@
     //timestamps(milliseconds)
     // 0->Jan 1st(midnight) 1970 (unix epoch)
     //33400,10,-283
-    export default(expenses,{text,sortBy,startDate,endDate})=>{
-
+    import moment from 'moment';
+   export default  (expenses,{text,sortBy,startDate,endDate})=>{
         return expenses.filter((expense)=>{
-            const startDateMatch = typeof startDate !=='number' ||expense.createdAt>=startDate;
-            const endDateMatch = typeof endDate !=='number' || expense.createdAt<=endDate;
-        //if expenses.description has the text variable string inside of it
-        //includes
-        //convert both strings to lower case (case-insensitive search)
-        expense.description.toLowerCase();
-            const textMatch= expense.description.toLowerCase().includes(text.toLowerCase());
-            //return the array only if all these are true
+            const createdAtMoment= moment(expense.createdAt);
+            const startDateMatch = startDate?startDate.isSameOrBefore(createdAtMoment,'day'):true;
+            const endDateMatch = endDate?endDate.isSameOrAfter(createdAtMoment,'day'):true;
+            const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
             return startDateMatch && endDateMatch && textMatch;
         }).sort((a,b)=>{
             if(sortBy==='date'){
@@ -25,4 +21,3 @@
         });
     
     };
-    

@@ -1,6 +1,5 @@
 import {createStore, combineReducers} from 'redux';
 
-
 //action generators : They are functions that return action objects
 
 //argument destructuring of {argumentBy:5}and setting up default values
@@ -20,97 +19,91 @@ import {createStore, combineReducers} from 'redux';
     //     type:'INCREMENT',
 
     // };
+    const add = ({a,b},c=1)=>{
+        console.log(a+b+c)
+    }
+
+ console.log(add({a:1,b:3}));  
+
+
+
+    //action generator
+
 const incrementCount = ({incrementBy=1}={})=>({
-    type:'INCREMENT',
-    incrementBy
+        type:'INCREMENT',
+        incrementBy
 });
+
 const decrementCount = ({decrementBy=1}={})=>({
     type:'DECREMENT',
     decrementBy
 });
-const resetCount = ({}={})=>({
+const resetCount = ()=>({
     type:'RESET'
-
 });
-const setCount=({count}={})=>({
+const setCount = ({count})=>({
     type:'SET',
-    count
+    count:count
 });
 
+//Reducer
 
-//
-
-//Reducers
-
-//
-
-const countReducer = (state = {count:0},action)=>{
-    switch (action.type){
+const countReducer = (state={count:0},action)=>{
+    switch(action.type){
         case 'INCREMENT':
-        //check if incrementBy has a value
-        //const incrementBy = typeof action.incrementBy==='number'?action.incrementBy:1;
-        return {
-            count:state.count + action.incrementBy
-        };
+        return{
+            count:state.count+action.incrementBy
+        }
         case 'DECREMENT':
         return {
-            count:state.count - action.decrementBy
+            count:state.count-action.decrementBy
         }
         case 'RESET':
-        return {
+        return{
             count:0
         }
         case 'SET':
         return{
             count:action.count
         }
-        default: 
+        default:
         return state;
     }
+    return state;
 };
 
+
 const store = createStore(countReducer);
-const unsubscribe =store.subscribe(()=>{
-    console.log(store.getState());
-});
-store.dispatch(incrementCount({incrementBy:5}));
+const unsubscribe = store.subscribe(()=>{
+    console.log( store.getState())}
+
+)
+
 store.dispatch(incrementCount());
+//unsubscribe(); to unsubscribe
+store.dispatch(incrementCount({incrementBy:5}))
 store.dispatch(resetCount());
 store.dispatch(decrementCount({decrementBy:10}));
-store.dispatch(setCount({count:101}));
+store.dispatch(decrementCount());
+store.dispatch(setCount({count:103}))
 
-
-// const store = createStore((state = {count:0},action)=>{
-//     switch (action.type){
-//         case 'INCREMENT':
-//         //check if incrementBy has a value
-//         //const incrementBy = typeof action.incrementBy==='number'?action.incrementBy:1;
-//         return {
-//             count:state.count + action.incrementBy
-//         };
-//         case 'DECREMENT':
-//         return {
-//             count:state.count - action.decrementBy
-//         }
-//         case 'RESET':
-//         return {
-//             count:0
-//         }
-//         case 'SET':
-//         return{
-//             count:action.count
-//         }
-//         default: 
-//         return state;
-//     }
-// });
+//increment the count 
 
 
 
-//action - Increment the count
-// store.dispatch({
-//     type:'INCREMENT',
-//     incrementBy:5
-// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

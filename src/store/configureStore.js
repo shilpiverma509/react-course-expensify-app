@@ -2,18 +2,17 @@ import {createStore,combineReducers} from 'redux';
 import expensesReducer from '../reducers/expenses';
 import filtersReducer from '../reducers/filters';
 
+//store creation
 export default ()=>{
     const store = createStore(
         combineReducers({
             expenses:expensesReducer,
             filters:filtersReducer
-        })
+        }),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+//for adding redux dev tools
     );
     return store;
-}
-//store creation
-//when we import the function the default export
-// from configure store, we just call it, we get the
-//store back and we can go ahead and actually use
-//it
+};
+
 
