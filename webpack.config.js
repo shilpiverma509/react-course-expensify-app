@@ -1,36 +1,53 @@
 //entry -> output
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+module.exports = (env) => {
+  const isProduction = env === 'production';
+  const CSSExtract = new ExtractTextPlugin('styles.css');
 
-module.exports = {
-    //webpack configurations details
+  return {
     entry: './src/app.js',
-    //entry: './src/playground/hoc.js',
-    output:{
-        //path is the absolute path on your machine where
+    //path is the absolute path on your machine where
         //you want to output that web pack file
         //joining absolute path with the local path to the public folder
-        path:path.join(__dirname,'public'),
-        filename:'bundle.js'
+    output: {
+      path: path.join(__dirname, 'public'),
+      filename: 'bundle.js'
     },
     module: {
-        rules: [{
-          loader: 'babel-loader',
-          test: /\.js$/,
-          exclude: /node_modules/
-        }, {
-          test: /\.s?css$/,
+      rules: [{
+        loader: 'babel-loader',
+        test: /\.js$/,
+        exclude: /node_modules/
+      }, {
+        test: /\.s?css$/,
+        use: CSSExtract.extract({
           use: [
-            'style-loader',
-            'css-loader',
-            'sass-loader'
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true
+              }
+            }
           ]
-        }]
-      },
-      devtool: 'cheap-module-eval-source-map',
-      devServer: {
-        contentBase: path.join(__dirname, 'public'),
-        historyApiFallback: true
-      }
-    };
-    
+        })
+      }]
+    },
+    plugins: [
+      CSSExtract
+    ],
+    devtool: isProduction ? 'source-map' : 'inline-source-map',
+    devServer: {
+      contentBase: path.join(__dirname, 'public'),
+      historyApiFallback: true
+    }
+  };
+};
+

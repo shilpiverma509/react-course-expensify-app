@@ -5,9 +5,10 @@
   "license": "MIT",
   "scripts": {
     "serve": "live-server public/",
-    "build": "webpack",
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
-    "test": "jest"
+    "test": "jest --config=jest.config.json"
   },
   "dependencies": {
     "babel-cli": "6.24.1",
@@ -18,12 +19,17 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "6.24.1",
     "css-loader": "^0.28.7",
+    "enzyme": "3.0.0",
+    "enzyme-adapter-react-16": "1.0.0",
+    "enzyme-to-json": "3.0.1",
+    "extract-text-webpack-plugin": "^3.0.2",
     "firebase": "^4.10.1",
     "jest": "^22.4.2",
     "live-server": "^1.2.0",
     "moment": "^2.20.1",
     "node-sass": "^4.7.2",
     "normalize.css": "^7.0.0",
+    "raf": "^3.3.2",
     "react": "16.0.0",
     "react-addons-shallow-compare": "15.6.0",
     "react-dates": "12.7.0",
@@ -31,6 +37,7 @@
     "react-modal": "^3.1.8",
     "react-redux": "5.0.5",
     "react-router-dom": "4.2.2",
+    "react-test-renderer": "16.0.0",
     "redux": "v3.7.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
