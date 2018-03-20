@@ -5,7 +5,7 @@
 
 import React from 'react';
 import ExpenseList from './ExpenseList';
-import ExpenseListfilters from './ExpenseListfilters'
+import ExpenseListFilters from './ExpenseListFilters';
 //conects your component to the redux store
 
 const ExpenseDashboardPage =(props)=>(
