@@ -1,7 +1,7 @@
 //import './utils.js'
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import './firebase/firebase';
 import AppRouter from './routers/AppRouter'
 import  './firebase/firebase';
 import {Provider} from 'react-redux';
