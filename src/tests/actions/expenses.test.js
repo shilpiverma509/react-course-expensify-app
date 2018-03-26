@@ -7,6 +7,19 @@ import thunk from 'redux-thunk';
 import database from '../../firebase/firebase';
 
 const createMockStore = configureStore([thunk]);
+//set data on firebase
+//adding done will make sure that beforeEach doesn't allow
+//the test case to run until firebase has actually synced up the data
+beforeEach((done)=>{
+  const expensesData = {};
+  expenses.forEach(({id,description,note,amount,createdAt})=>{
+    expensesData[id]={description,amount,note,createdAt}
+});
+  database.ref('expenses').set(expensesData).then(()=>done());
+})
+
+
+
 
 test('should setup remove expense action object', () => {
   const action = removeExpense({ id: '123abc' });
