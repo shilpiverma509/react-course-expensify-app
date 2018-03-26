@@ -29,7 +29,9 @@ import { editExpense, removeExpense } from '../actions/expenses';
 
 
 export class EditExpensePage extends React.Component {
+  
   onSubmit = (expense) => {
+    debugger;
     this.props.editExpense(this.props.expense.id, expense);
     this.props.history.push('/');
   };
