@@ -12,7 +12,7 @@ beforeEach(()=>{
     //history is an object with push property on it
      history = {push:jest.fn()}
      wrapper = shallow(
-        <editExpensePage 
+        <EditExpensePage 
             editExpense={editExpense} 
             removeExpense = {removeExpense}
             history={history}

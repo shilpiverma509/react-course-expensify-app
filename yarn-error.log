@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1/libexec/bin/yarn.js add redux-thunk@2.2.0
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1/libexec/bin/yarn.js init
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -56,6 +56,7 @@ npm manifest:
       "react-redux": "5.0.5",
       "react-router-dom": "4.2.2",
       "redux": "v3.7.2",
+      "redux-thunk": "^2.2.0",
       "sass-loader": "^6.0.6",
       "style-loader": "^0.19.1",
       "uuid": "3.1.0",
@@ -6982,14 +6983,14 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: Found incompatible module
-      at new MessageError (/usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:186:110)
-      at Object.checkOne (/usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:62444:11)
-      at /usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:22773:75
-      at Generator.next (<anonymous>)
-      at step (/usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:98:30)
-      at /usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:116:14
-      at new Promise (<anonymous>)
-      at new F (/usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:23451:28)
-      at /usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:95:12
-      at /usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:22777:27
+  Error: canceled
+      at Interface.<anonymous> (/usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:128791:13)
+      at emitNone (events.js:106:13)
+      at Interface.emit (events.js:208:7)
+      at Interface._ttyWrite (readline.js:775:16)
+      at ReadStream.onkeypress (readline.js:160:10)
+      at emitTwo (events.js:126:13)
+      at ReadStream.emit (events.js:214:7)
+      at emitKeys (internal/readline.js:420:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1011:36)

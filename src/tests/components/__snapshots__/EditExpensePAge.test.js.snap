@@ -1,22 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render EditExpensePage correctly 1`] = `
-<editExpensePage
-  editExpense={[MockFunction]}
-  expenses={
-    Object {
-      "amount": 4500,
-      "createdAt": 345600000,
-      "description": "Credit Card",
-      "id": "3",
-      "note": "",
-    }
-  }
-  history={
-    Object {
-      "push": [MockFunction],
-    }
-  }
-  removeExpense={[MockFunction]}
-/>
+<div>
+  <ExpenseForm
+    onSubmit={[Function]}
+  />
+  <button
+    onClick={[Function]}
+  >
+    Remove
+  </button>
+</div>
 `;

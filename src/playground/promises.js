@@ -1,10 +1,10 @@
 const promise = new Promise((resolve,reject)=>{
      setTimeout(()=>{
-    //     resolve('This is my resolved data');
-    // },5000);
-    reject('something went wrong');
+        resolve({name:"Shilpi"});
+        reject('something went wrong');
      },5000);
-});
+    }); 
+
 
 console.log('before');
 //not a very good way
@@ -18,7 +18,9 @@ console.log('before');
 //explicit catch method
 promise.then((data)=>{
         console.log('1',data);
-
+        return 'some data';
+}).then((str)=>{
+    console.log("Does this run?",str);
 }).catch((err)=>{
     console.log("error:",err);
 });
