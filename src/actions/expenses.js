@@ -1,42 +1,7 @@
  import uuid from 'uuid';
  import database from '../firebase/firebase';
 
- //component calls action generator
- //action generator return object
- //component dispatches object
- //redux store runs reducer and store changes
 
- //changing to 
-  //component calls action generator
-  //action generator return function
-  //component dispatched function (?) 
-  //function runs (has ability to dispatch other actions and 
-//do whatever it wants)
-
-//for firebase
-//use push
-//attach callback
-//dispatch action
-//redirect
-
-// export const addExpense = (
-//     {
-//         description='',
-//         note='',
-//         amount=0,
-//         createdAt=0
-//     } ={}
-//     )=>({
-//         type:'ADD_EXPENSE',
-//         expense:{
-//         id:uuid(),
-//         description,
-//         note,
-//         amount,
-//         createdAt
-
-//     }
-// });
 //refactoring addExpense with firebase
 export const addExpense = (expense) => ({
     type: 'ADD_EXPENSE',
@@ -82,7 +47,76 @@ export const editExpense = (id,updates)=>({
     updates  
 })
 
- //ADD_EXPENSE generator
+//SET_EXPENSES
+
+export const setExpenses= (expenses)=>({
+  type:'SET_EXPENSES',
+  expenses
+});
+
+//setStartExpenses
+//1. Fetch alle xpense data at once
+//2. Parse that data into an array
+//3. Dispatch SET_EXPENSES
+ export const startSetExpenses= ()=>{
+  return(dispatch)=>{
+    //fetching the data
+    return database.ref('expenses').once('value').then((snapshot)=>{
+      //parsing the data
+      const expenses = [];
+
+    snapshot.forEach((childSnapshot) => {
+      expenses.push({
+        id:childSnapshot.key,
+        ...childSnapshot.val()
+      })
+    });
+    dispatch(setExpenses(expenses));
+    });
+  }
+ };
+
+
+
+
+  //component calls action generator
+ //action generator return object
+ //component dispatches object
+ //redux store runs reducer and store changes
+
+ //changing to 
+  //component calls action generator
+  //action generator return function
+  //component dispatched function (?) 
+  //function runs (has ability to dispatch other actions and 
+//do whatever it wants)
+
+//for firebase
+//use push
+//attach callback
+//dispatch action
+//redirect
+
+// export const addExpense = (
+//     {
+//         description='',
+//         note='',
+//         amount=0,
+//         createdAt=0
+//     } ={}
+//     )=>({
+//         type:'ADD_EXPENSE',
+//         expense:{
+//         id:uuid(),
+//         description,
+//         note,
+//         amount,
+//         createdAt
+
+//     }
+// });
+
+//ADD_EXPENSE generator
 //installing uuid to generate id's now . 
 /*
 const addExpense = (expense = {}) => { ... } 

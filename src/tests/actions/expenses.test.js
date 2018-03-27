@@ -1,5 +1,5 @@
 
-import {startAddExpense,addExpense,editExpense,removeExpense} from '../../actions/expenses';
+import {startSetExpenses,startAddExpense,addExpense,editExpense,removeExpense,setExpenses} from '../../actions/expenses';
 import uuid from 'uuid';
 import expenses from '../fixtures/expenses';
 import configureStore from 'redux-mock-store'; //ES6 modules
@@ -40,6 +40,7 @@ test('should setup edit expense action object', () => {
     }
   });
 });
+
 
 //default values
 /*
@@ -153,3 +154,22 @@ test('should add expense with defaults to database and store', (done) => {
   });
 });
 
+test('should setup set expense action object with data',()=>{
+  const action = setExpenses(expenses);
+  expect(action).toEqual({
+    type:'SET_EXPENSES',
+    expenses
+  });
+});
+
+test('should fetch the expenses from firebase',(done)=>{
+  const store = createMockStore({});
+  store.dispatch(startSetExpenses()).then(()=>{
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type:'SET_EXPENSES',
+      expenses
+    });
+    done();
+  })
+})
