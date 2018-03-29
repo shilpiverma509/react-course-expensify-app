@@ -1,32 +1,80 @@
  import uuid from 'uuid';
  import database from '../firebase/firebase';
 
+/*action generators working 
 
-//refactoring addExpense with firebase
+  1.component calls action generator
+  2.action generator return object
+  3.component dispatches object
+  4.redux store runs reducer and store changes
+
+*/
+
+//5.refactoring addExpense with firebase
+
+//changing to
+/* 
+  1.component calls action generator
+  2.action generator return function
+  3.component dispatched function (?) 
+  4.function runs (has ability to dispatch other actions and do whatever it wants)
+*/
+
 export const addExpense = (expense) => ({
-    type: 'ADD_EXPENSE',
-    expense
-  });
-  
-  export const startAddExpense = (expenseData = {}) => {
-    return (dispatch) => {
-      const {
-        description = '',
-        note = '',
-        amount = 0,
-        createdAt = 0
-      } = expenseData;
-      const expense = { description, note, amount, createdAt };
-  //To continue a promise chain we need to return this database data
-  //adding return 
-    return  database.ref('expenses').push(expense).then((ref) => {
+  type: 'ADD_EXPENSE',
+  expense
+});
+
+//create expense
+export const startAddExpense = (expenseData={})=>{
+  //return a functions which gets called internally bu Redux
+  //and it gets called by dispatch 
+  return (dispatch)=>{
+    const {
+      description='',
+        note='',
+        amount=0,
+        createdAt=0
+    }=expenseData;
+      const expense = {description,note,amount,createdAt}
+      //storing data to firebase 
+      //returning the data so that we can 
+      //allow the tests to runa after data is fetched from firebase
+      return database.ref('expenses').push(expense)
+      .then((ref)=>{
+        //dispatching action to change store
         dispatch(addExpense({
-          id: ref.key,
-          ...expense
-        }));
-      });
-    };
-  };
+          id:ref.key,
+        ...expense
+      }));
+    });
+};
+};
+
+
+
+
+
+  
+//   export const startAddExpense = (expenseData = {}) => {
+//     return (dispatch) => {
+//       const {
+//         description = '',
+//         note = '',
+//         amount = 0,
+//         createdAt = 0
+//       } = expenseData;
+//       const expense = { description, note, amount, createdAt };
+//   //To continue a promise chain we need to return this database data
+//   //adding return 
+//     return  database.ref('expenses').push(expense).then((ref) => {
+//         dispatch(addExpense({
+//           id: ref.key,
+//           ...expense
+//         }));
+//       });
+//     };
+//   };
   
   
 //REMOVE_EXPENSE
@@ -36,6 +84,15 @@ export const removeExpense=({id}={})=>({
         id
 
 })
+
+export const startRemoveExpense = ({id}={})=>{
+  return (dispatch)=>{
+    return database.ref(`expenses/id`).remove()
+    .then((ref)=>{
+      dispatch(removeExpense({id}));
+    })
+}};
+
 //destructuring object
 //EDIT_EXPENSE
 //id and update will not need defaults, if you don't have an id 
@@ -58,6 +115,7 @@ export const setExpenses= (expenses)=>({
 //1. Fetch alle xpense data at once
 //2. Parse that data into an array
 //3. Dispatch SET_EXPENSES
+
  export const startSetExpenses= ()=>{
   return(dispatch)=>{
     //fetching the data
@@ -76,20 +134,11 @@ export const setExpenses= (expenses)=>({
   }
  };
 
+//Removes expenses from firebase and dispatch removes expense
+//action object
 
 
-
-  //component calls action generator
- //action generator return object
- //component dispatches object
- //redux store runs reducer and store changes
-
- //changing to 
-  //component calls action generator
-  //action generator return function
-  //component dispatched function (?) 
-  //function runs (has ability to dispatch other actions and 
-//do whatever it wants)
+ 
 
 //for firebase
 //use push

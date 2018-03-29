@@ -29,7 +29,7 @@ import * as firebase from 'firebase';
 
 
 //key  
-/*
+/* Subscribe to data changes from fireabase
   database.ref('expenses').on('value',(snapshot)=>{
     const expenses = [];
     snapshot.forEach(childSnapshot => {
@@ -52,9 +52,52 @@ import * as firebase from 'firebase';
   });
   
 
+//when we work with arrays we use push to generate our object
+//because it will automatically genertate a unique id for us
+/* set a value 
+  database.ref('notes').push({
+  title:'todo',
+  body:"go for a run"
+});
+*/
+/* update a value  
+  database.ref('notes/-L8h8IGv-jAeIXUbBI3L').update({
+  body:'Buy Drink'
+})
+*/
+/* remove anote  
+  database.ref('notes/-L8h8IGv-jAeIXUbBI3L').remove();
+*/
 
+// const note = [{
+//   id:'12',
+//   body:'this is my note',
+//   title:'First note'
+// },
+// {id:'12',
+//   body:'this is my note',
+//   title:'First note'}
+// ];
 
+// database.ref('notes').set(note);
+//firebase doesn't support an array. This will be stored as an object
+//at its indexes
 
+//in firebase world the keys on this object will be the id's
+/*const firebaseNotes = {
+  notes:{
+    //this id will be generated for us
+    aswsdhsd:{
+      body:'this is my note',
+      title:'First note'
+    },
+    sdhsded:{
+      body:'this is my note',
+      title:'First note'
+    }
+  }
+}
+*/
 
 //  database.ref('notes/-L8OhLKbemcXuOav8JIg').remove();
 

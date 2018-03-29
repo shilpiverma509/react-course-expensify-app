@@ -14,4 +14,6 @@ import * as firebase from 'firebase';
 
 const database = firebase.database();
 
+
 export { firebase, database as default };
+

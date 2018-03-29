@@ -39,7 +39,7 @@ export default class ExpenseForm extends React.Component {
     this.setState(() => ({ calendarFocused: focused }));
   };
   onSubmit = (e) => {
-    debugger;
+    //debugger;
     e.preventDefault();
 
     if (!this.state.description || !this.state.amount) {
