@@ -6,6 +6,7 @@ import {
   setExpenses, 
   setStartExpenses,
    startRemoveExpense,
+   startEditExpense,
   } from '../../actions/expenses';
 import uuid from 'uuid';
 import expenses from '../fixtures/expenses';
@@ -65,6 +66,25 @@ test('should setup edit expense action object', () => {
   });
 });
 
+test('should setup start edit Expense action object',(done)=>{
+  const store = createMockStore({});
+  const id = expenses[1].id;
+  const updates = {
+    note:'removed'
+  }
+  store.dispatch(startEditExpense(id,updates)).then(()=>{
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type:'EDIT_EXPENSE',
+      id,
+      updates
+    })
+    return database.ref(`expenses/${id}`).once('value')
+  }).then((snapshot)=>{
+    expect(snapshot.val().note).toBe(updates.note);
+    done();
+  });
+});
 
 //default values
 /*
