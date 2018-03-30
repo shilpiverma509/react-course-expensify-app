@@ -1,4 +1,6 @@
 import * as firebase from 'firebase';
+//a provider is a way to provide Authentication
+
 
   // Initialize Firebase
  
@@ -14,6 +16,10 @@ import * as firebase from 'firebase';
 
 const database = firebase.database();
 
+// Start a sign in process for an unauthenticated user by creating
+//an instance of google provider
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export { firebase, database as default };
+
+export { firebase,googleAuthProvider, database as default };
 

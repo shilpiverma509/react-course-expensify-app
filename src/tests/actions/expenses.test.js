@@ -6,13 +6,16 @@ import {
   setExpenses, 
   setStartExpenses,
    startRemoveExpense,
-   startEditExpense,
+   startEditExpense
   } from '../../actions/expenses';
 import uuid from 'uuid';
 import expenses from '../fixtures/expenses';
 import configureMockStore from 'redux-mock-store'; //ES6 modules
 import thunk from 'redux-thunk';
 import database from '../../firebase/firebase';
+import {startLogin, startLogout} from '../../actions/auth';
+import {firebase,googleAuthProvider} from '../../firebase/firebase';
+
 
 const createMockStore = configureMockStore([thunk]);
 //set data on firebase
@@ -65,7 +68,6 @@ test('should setup edit expense action object', () => {
     }
   });
 });
-
 test('should setup start edit Expense action object',(done)=>{
   const store = createMockStore({});
   const id = expenses[1].id;
@@ -226,7 +228,18 @@ test('should fetch the expenses from firebase',(done)=>{
     });
     done();
   })
-})
+});
+
+
+
+// test('should set up startLogin action',()=>{
+//   const store = createMockStore({});
+//   const signInWithPopup=jest.fn();
+//   store.dispatch(startLogin()).then(()=>{
+//     const actions = store.getActions();
+//     expect(actions[0])
+//   })
+// })
 
 
 
